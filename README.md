@@ -8,7 +8,7 @@ Node ogg opus audio encoder. This currently only works in the browser.
 
 ##Notes
 
-You **must** specify the `inputSampleRate` of the audio file piped into the encoder.
+You **must** specify the `inputSampleRate` of the audio piped into the encoder.
 
 ##Usage
 
@@ -36,4 +36,6 @@ I modified the encoder written by [chris-rudmin](https://github.com/chris-rudmin
 
 ##Tests
 
-In order to run tests in the browser make sure you open your browser with the following flag: `--allow-file-access-from-files`
+In order to run tests in the browser make sure you open your browser with the following flag:
+
+    --allow-file-access-from-files
