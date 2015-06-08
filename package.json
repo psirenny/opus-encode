@@ -17,6 +17,8 @@
   },
   "description": "Javascript ogg opus audio encoder.",
   "devDependencies": {
+    "bower": "^1.4.1",
+    "browserify": "^10.2.4",
     "tape": "^4.0.0"
   },
   "homepage": "https://github.com/psirenny/opus-encode#readme",
@@ -35,7 +37,7 @@
     "url": "git://github.com/psirenny/opus-encode.git"
   },
   "scripts": {
-    "test": "node test"
+    "test": "bower install && browserify test -o test/bundle.js"
   },
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

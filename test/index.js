@@ -25,7 +25,9 @@ test('encode', function (t) {
     t.equal(typeof encode, 'object');
     t.equal(typeof encode.pipe, 'function');
 
+    console.time('runtime');
     read.pipe(encode).pipe(concat(function (buf) {
+      console.timeEnd('runtime');
       var blob1 = new Blob([buf.toArrayBuffer()]);
       var req = new XMLHttpRequest();
       req.open('GET', 'expected.opus', true);
