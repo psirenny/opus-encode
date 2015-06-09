@@ -23,11 +23,16 @@
   },
   "homepage": "https://github.com/psirenny/opus-encode#readme",
   "keywords": [
+    "api",
     "audio",
+    "buffer",
     "encode",
     "javascript",
+    "node",
     "ogg",
-    "opus"
+    "opus",
+    "web",
+    "worker"
   ],
   "license": "Unlicense",
   "main": "index.js",
@@ -39,5 +44,5 @@
   "scripts": {
     "test": "bower install && browserify test -o test/bundle.js"
   },
-  "version": "2.0.0"
+  "version": "2.0.1"
 }
