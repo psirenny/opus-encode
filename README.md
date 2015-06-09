@@ -22,13 +22,13 @@ Encode audio buffer streams to ogg opus. AFAIK, this only works in the browser.
       var ctx = new AudioContext();
 
       // decode the file to audio buffers
-      ctx.decodeAudioData(res.toArrayBuffer(), function (buf) {
+      ctx.decodeAudioData(res, function (buf) {
         var audio = new stream.Readable({objectMode: true});
 
         // convert the audio buffers to an object stream
         audio._read = function () {
-          read.push(buf);
-          read.push(null);
+          this.push(buf);
+          this.push(null);
         };
 
         // create a stream that concats all encoded data
