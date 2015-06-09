@@ -1,6 +1,6 @@
 #opus-encode
 
-Node ogg opus audio encoder. This currently only works in the browser.
+Encode audio buffer streams to ogg opus. AFAIK, this only works in the browser.
 
 ##Installation
 
@@ -11,16 +11,29 @@ Node ogg opus audio encoder. This currently only works in the browser.
     var encode = require('opus-encode');
     var stream = require('stream');
 
+    // request an audio file
     var req = new XMLHttpRequest();
     req.open('GET', '/path/to/file.wav', true);
     req.responseType = 'arraybuffer';
 
     req.onload = function () {
-      var audio = new stream.PassThrough();
-      var opus = encode({inputSampleRate: 41000});
-      audio.push(new Buffer(new Uint8Array(req.response)));
-      audio.push(null);
-      audio.pipe(opus).pipe(...);
+      var res = req.response;
+      var ctx = new AudioContext();
+
+      // decode the file to audio buffers
+      ctx.decodeAudioData(res.toArrayBuffer(), function (buf) {
+        var audio = new stream.Readable({objectMode: true});
+        var opus = encode({inputSampleRate: 41000});
+
+        // convert the audio buffers to an object stream
+        audio._read = function () {
+          read.push(buf);
+          read.push(null);
+        };
+
+        // pipe the audio buffer stream to the encoder
+        audio.pipe(opus).pipe(...);
+      });
     };
 
     req.send();

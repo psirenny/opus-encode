@@ -17,29 +17,35 @@ test('encode', function (t) {
 
   req.onload = function () {
     var encode = lib();
-    var read = new stream.PassThrough();
-    var buf = new Buffer(new Uint8Array(req.response));
-    read.push(buf);
-    read.push(null);
-
     t.equal(typeof encode, 'object');
     t.equal(typeof encode.pipe, 'function');
 
-    console.time('runtime');
-    read.pipe(encode).pipe(concat(function (buf) {
-      console.timeEnd('runtime');
-      var blob1 = new Blob([buf.toArrayBuffer()]);
-      var req = new XMLHttpRequest();
-      req.open('GET', 'expected.opus', true);
-      req.responseType = 'blob';
+    var ctx = new AudioContext();
+    var buf = new Buffer(new Uint8Array(req.response));
 
-      req.onload = function () {
-        var blob2 = req.response;
-        t.equal(blob1.size, blob2.size);
+    ctx.decodeAudioData(buf.toArrayBuffer(), function (buf) {
+      var read = new stream.Readable({objectMode: true});
+      read._read = function () {
+        read.push(buf);
+        read.push(null);
       };
 
-      req.send();
-    }));
+      console.time('runtime');
+      read.pipe(encode).pipe(concat(function (buf) {
+        console.timeEnd('runtime');
+        var blob1 = new Blob([buf.toArrayBuffer()]);
+        var req = new XMLHttpRequest();
+        req.open('GET', 'expected.opus', true);
+        req.responseType = 'blob';
+
+        req.onload = function () {
+          var blob2 = req.response;
+          t.equal(blob1.size, blob2.size);
+        };
+
+        req.send();
+      }));
+    });
   };
 
   req.send();
