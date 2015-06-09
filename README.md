@@ -6,10 +6,6 @@ Node ogg opus audio encoder. This currently only works in the browser.
 
     npm install --save opus-encode
 
-##Notes
-
-You **must** specify the `inputSampleRate` of the audio piped to the encoder.
-
 ##Usage
 
     var encode = require('opus-encode');

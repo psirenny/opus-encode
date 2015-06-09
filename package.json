@@ -39,5 +39,5 @@
   "scripts": {
     "test": "bower install && browserify test -o test/bundle.js"
   },
-  "version": "1.0.1"
+  "version": "1.0.2"
 }

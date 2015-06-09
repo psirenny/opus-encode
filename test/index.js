@@ -16,7 +16,7 @@ test('encode', function (t) {
   req.responseType = 'arraybuffer';
 
   req.onload = function () {
-    var encode = lib({inputSampleRate: 41000});
+    var encode = lib();
     var read = new stream.PassThrough();
     var buf = new Buffer(new Uint8Array(req.response));
     read.push(buf);
