@@ -8,6 +8,7 @@ Encode audio buffer streams to ogg opus. AFAIK, this only works in the browser.
 
 ##Usage
 
+    var concat = require('concat-stream');
     var encode = require('opus-encode');
     var stream = require('stream');
 
@@ -30,8 +31,13 @@ Encode audio buffer streams to ogg opus. AFAIK, this only works in the browser.
           read.push(null);
         };
 
-        // pipe the audio buffer stream to the encoder
-        audio.pipe(encode()).pipe(...);
+        // create a stream that concats all encoded data
+        var doSomething = concat(function (buf) {
+          // this blob contains the ogg opus encoded audio
+          var blob = new Blob([buf.toArrayBuffer()]);
+        });
+
+        audio.pipe(oggopus()).pipe(doSomething);
       });
     };
 
