@@ -37,7 +37,7 @@ Encode audio buffer streams to ogg opus. AFAIK, this only works in the browser.
           var blob = new Blob([buf.toArrayBuffer()]);
         });
 
-        audio.pipe(oggopus()).pipe(doSomething);
+        audio.pipe(encode()).pipe(doSomething);
       });
     };
 
