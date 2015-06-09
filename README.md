@@ -23,7 +23,7 @@ Encode audio buffer streams to ogg opus. AFAIK, this only works in the browser.
       // decode the file to audio buffers
       ctx.decodeAudioData(res.toArrayBuffer(), function (buf) {
         var audio = new stream.Readable({objectMode: true});
-        var opus = encode({inputSampleRate: 41000});
+        var opus = encode();
 
         // convert the audio buffers to an object stream
         audio._read = function () {
