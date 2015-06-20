@@ -1,3 +1,4 @@
+var polyfill = require('audiocontext-polyfill');
 var concat = require('concat-stream');
 var lib = require('..');
 var stream = require('stream');
@@ -30,9 +31,7 @@ test('encode', function (t) {
         read.push(null);
       };
 
-      console.time('runtime');
       read.pipe(encode).pipe(concat(function (buf) {
-        console.timeEnd('runtime');
         var blob1 = new Blob([buf.toArrayBuffer()]);
         var req = new XMLHttpRequest();
         req.open('GET', 'expected.opus', true);
