@@ -45,5 +45,5 @@
   "scripts": {
     "test": "bower install && browserify test -t debowerify -o test/bundle.js"
   },
-  "version": "2.0.1"
+  "version": "2.0.2"
 }

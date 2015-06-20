@@ -1,12 +1,12 @@
 {
-  "name": "opus-encode",
-  "main": "index.js",
-  "version": "1.0.0",
-  "homepage": "https://github.com/psirenny/opus-encode",
   "authors": [
     "Dennis Torres <djtorres0@gmail.com>"
   ],
+  "dependencies": {
+    "audiocontext-polyfill": "~0.0.2"
+  },
   "description": "Javascript ogg opus audio encoder.",
+  "homepage": "https://github.com/psirenny/opus-encode",
   "keywords": [
     "audio",
     "encode",
@@ -15,7 +15,7 @@
     "opus"
   ],
   "license": "Unlicense",
-  "dependencies": {
-    "audiocontext-polyfill": "~0.0.2"
-  }
+  "main": "index.js",
+  "name": "opus-encode",
+  "version": "2.0.2"
 }
